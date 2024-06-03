@@ -13,7 +13,13 @@ Quiz Witt is an interactive and engaging quiz application designed to test and e
 * Dependency Injection with Hilt</p>
 * Retrofit </p>
 * Json parsing </p>
+
+
+# Screenrecord
+https://github.com/nour-ghsaier/Quiz_WittGhsaier/assets/148276631/5b07e33e-8107-4a0f-956d-69b424504b67
+
 # Screenshots
+
 <div align="center">
   <img src="https://github.com/nour-ghsaier/Quiz_WittGhsaier/assets/148276631/57d304b9-9648-462a-9610-c5d6f0cd5b73" alt="icLauncher" width="220" style="border: 5px solid #ccc; border-radius: 15px;">
   <img src="https://github.com/nour-ghsaier/Quiz_WittGhsaier/assets/148276631/d4f0994d-c2a5-4373-b40d-0700bca27acb" alt="splach" width="220" style="border: 5px solid #ccc; border-radius: 15px;">
