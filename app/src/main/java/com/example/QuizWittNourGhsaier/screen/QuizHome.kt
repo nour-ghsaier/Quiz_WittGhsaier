@@ -257,30 +257,4 @@ fun QuizHome(
 
 
 
-/*
-@Composable
-fun ScaffoldWithBottomMenu() {
-    Scaffold(bottomBar = {BottomBar()}
-    ) {
-        //content area
-        Box(modifier = Modifier
-            .background(Color(0xff546e7a))
-            .fillMaxSize())
-    }
-}
 
-@Composable
-fun BottomBar() {
-    val selectedIndex = remember { mutableStateOf(0) }
-    BottomNavigation(elevation = 10.dp) {
-
-        BottomNavigationItem(icon = {
-            Icon(imageVector = Icons.Default.Home, "")
-        },
-            label = { Text(text = "Home") },
-            selected = (selectedIndex.value == 0),
-            onClick = {
-                selectedIndex.value = 0
-            })
-    }
-}*/
