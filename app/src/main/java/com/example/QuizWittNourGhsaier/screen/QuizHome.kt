@@ -13,7 +13,9 @@ import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.Divider
+import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.MaterialTheme
+import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Surface
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
@@ -30,13 +32,25 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.NavController
-import com.example.QuizWittNourGhsaier.ui.theme.MontserratFamily
+import com.example.QuizWittNourGhsaier.ui.theme.Montserrat
+import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.filled.Home
+import androidx.compose.material3.Icon
 
+
+/*
+@OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun QuizHome(
     navController: NavController,
     viewModel: QuestionsViewModel = hiltViewModel()
 ) {
+    Scaffold(
+        topBar = { WittTopAppBar() }
+    ) {
+        // Your QuizHome content goes here, for example:
+        Text(text = "Welcome to Quiz Home", modifier = Modifier.padding(it))
+    }
 
     val questionItems = viewModel.data.value.data?.toMutableList()
     var currentQuestionIndex by remember {
@@ -54,7 +68,7 @@ fun QuizHome(
     Surface(
         modifier = Modifier
             .fillMaxSize(),
-        color = MaterialTheme.colorScheme.onBackground
+        color = MaterialTheme.colorScheme.primary
     ) {
         Column(
             modifier = Modifier
@@ -63,7 +77,7 @@ fun QuizHome(
         ) {
             Text(
                 text = "Question $currentQuestionIndex/$totalQuestion",
-                fontFamily = MontserratFamily,
+                fontFamily = Montserrat,
                 fontWeight = FontWeight.W900,
                 fontSize = 30.sp
             )
@@ -74,7 +88,7 @@ fun QuizHome(
                 modifier = Modifier
                     .fillMaxWidth(),
                 thickness = 1.dp,
-                color = MaterialTheme.colorScheme.background
+                color = MaterialTheme.colorScheme.tertiary
             )
 
             Spacer(modifier = Modifier.height(20.dp))
@@ -82,7 +96,7 @@ fun QuizHome(
             if (questionItem != null) {
                 Text(
                     text = questionItem.question,
-                    fontFamily = MontserratFamily,
+                    fontFamily = Montserrat,
                     fontWeight = FontWeight.SemiBold,
                     fontSize = 20.sp
                 )
@@ -99,7 +113,7 @@ fun QuizHome(
                         .background(Color.Transparent)
                         .border(
                             1.dp,
-                            MaterialTheme.colorScheme.background,
+                            MaterialTheme.colorScheme.tertiary,
                             RoundedCornerShape(15.dp)
                         )
                         .clip(
@@ -132,4 +146,141 @@ fun QuizHome(
         }
     }
 
+}*/
+@OptIn(ExperimentalMaterial3Api::class)
+@Composable
+fun QuizHome(
+    navController: NavController,
+    viewModel: QuestionsViewModel = hiltViewModel()
+) {
+    Scaffold(
+        topBar = { WittTopAppBar() },
+        content = { paddingValues ->
+            val questionItems = viewModel.data.value.data?.toMutableList()
+            var currentQuestionIndex by remember {
+                mutableStateOf(1)
+            }
+            var questionItem = questionItems?.get(currentQuestionIndex - 1)
+
+            val totalQuestion = questionItems?.size
+
+            var correctAnswer by remember {
+                mutableStateOf(0)
+            }
+
+            Surface(
+                modifier = Modifier
+                    .fillMaxSize()
+                    .padding(paddingValues),
+                color = MaterialTheme.colorScheme.primary
+            ) {
+                Column(
+                    modifier = Modifier
+                        .fillMaxSize()
+                        .padding(20.dp)
+                ) {
+                    Text(
+                        text = "Question $currentQuestionIndex/$totalQuestion",
+                        fontFamily = Montserrat,
+                        fontWeight = FontWeight.W900,
+                        fontSize = 30.sp
+                    )
+
+                    Spacer(modifier = Modifier.height(20.dp))
+
+                    Divider(
+                        modifier = Modifier
+                            .fillMaxWidth(),
+                        thickness = 1.dp,
+                        color = MaterialTheme.colorScheme.tertiary
+                    )
+
+                    Spacer(modifier = Modifier.height(20.dp))
+
+                    if (questionItem != null) {
+                        Text(
+                            text = questionItem.question,
+                            fontFamily = Montserrat,
+                            fontWeight = FontWeight.SemiBold,
+                            fontSize = 20.sp
+                        )
+                    }
+
+                    Spacer(modifier = Modifier.height(100.dp))
+
+                    questionItem?.options?.forEach {
+                        Row(
+                            modifier = Modifier
+                                .fillMaxWidth()
+                                .padding(bottom = 20.dp)
+                                .height(50.dp)
+                                .background(Color.Transparent)
+                                .border(
+                                    1.dp,
+                                    MaterialTheme.colorScheme.tertiary,
+                                    RoundedCornerShape(15.dp)
+                                )
+                                .clip(
+                                    RoundedCornerShape(
+                                        topStartPercent = 50,
+                                        topEndPercent = 50,
+                                        bottomEndPercent = 50,
+                                        bottomStartPercent = 50
+                                    )
+                                )
+                                .clickable {
+                                    if (it == questionItem?.correctAnswer) correctAnswer++
+                                    if (currentQuestionIndex == totalQuestion) {
+                                        currentQuestionIndex = 0
+                                        navController.navigate(Screens.QuizEnd.name + "/${correctAnswer}/${totalQuestion}")
+                                        Log.d("Finish", "QuizHome: Complete")
+                                        Log.d("Finish", "QuizHome: $correctAnswer")
+                                    }
+                                    currentQuestionIndex++
+                                },
+                            verticalAlignment = Alignment.CenterVertically
+                        ) {
+                            Text(
+                                modifier = Modifier
+                                    .padding(5.dp),
+                                text = it
+                            )
+                        }
+                    }
+                }
+            }
+        }
+    )
 }
+
+
+
+
+
+/*
+@Composable
+fun ScaffoldWithBottomMenu() {
+    Scaffold(bottomBar = {BottomBar()}
+    ) {
+        //content area
+        Box(modifier = Modifier
+            .background(Color(0xff546e7a))
+            .fillMaxSize())
+    }
+}
+
+@Composable
+fun BottomBar() {
+    val selectedIndex = remember { mutableStateOf(0) }
+    BottomNavigation(elevation = 10.dp) {
+
+        BottomNavigationItem(icon = {
+            Icon(imageVector = Icons.Default.Home, "")
+        },
+            label = { Text(text = "Home") },
+            selected = (selectedIndex.value == 0),
+            onClick = {
+                selectedIndex.value = 0
+            })
+    }
+}*/
