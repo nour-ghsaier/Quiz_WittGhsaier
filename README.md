@@ -30,13 +30,6 @@ https://github.com/nour-ghsaier/Quiz_WittGhsaier/assets/148276631/5b07e33e-8107-
 
 
 
-
-
-
-
-# Author
-Nour Ghsaier
-
 # Developed for IT 370 course
 
 
