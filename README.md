@@ -35,6 +35,6 @@ https://github.com/nour-ghsaier/Quiz_WittGhsaier/assets/148276631/5b07e33e-8107-
 
 <h3 align="left">Connect with me:</h3>
 <p align="left">
-<a href="[https://linkedin.com/in/nour ghsaier](https://www.linkedin.com/in/nour-ghsaier-bb7248221/)" target="blank"><img align="center" src="https://raw.githubusercontent.com/rahuldkjain/github-profile-readme-generator/master/src/images/icons/Social/linked-in-alt.svg" alt="nour ghsaier" height="30" width="40" /></a>
+<a href="https://www.linkedin.com/in/nour-ghsaier-bb7248221/" target="blank"><img align="center" src="https://raw.githubusercontent.com/rahuldkjain/github-profile-readme-generator/master/src/images/icons/Social/linked-in-alt.svg" alt="nour ghsaier" height="30" width="40" /></a>
 </p>
 
